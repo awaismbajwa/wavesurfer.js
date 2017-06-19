@@ -32,13 +32,19 @@ WaveSurfer.util.extend(WaveSurfer.Drawer.MultiCanvas, {
                 display: 'none',
                 boxSizing: 'border-box',
                 borderRightStyle: 'solid',
-                borderRightWidth: this.params.cursorWidth + 'px',
-                borderRightColor: this.params.cursorColor,
                 pointerEvents: 'none'
             })
         );
 
         this.addCanvas();
+        this.updateCursor();
+    },
+
+    updateCursor: function() {
+        this.style(this.progressWave, {
+            borderRightWidth: this.params.cursorWidth + 'px',
+            borderRightColor: this.params.cursorColor
+        });
     },
 
     updateSize: function () {

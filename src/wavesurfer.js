@@ -326,6 +326,42 @@ var WaveSurfer = {
         this.params.interact = !this.params.interact;
     },
 
+    getWaveColor: function() {
+        return this.params.waveColor;
+    },
+
+    setWaveColor: function(color) {
+        this.params.waveColor = color;
+        this.drawBuffer();
+    },
+
+    getProgressColor: function() {
+        return this.params.progressColor;
+    },
+
+    setProgressColor: function(color) {
+        this.params.progressColor = color;
+        this.drawBuffer();
+    },
+
+    getCursorColor: function() {
+        return this.params.cursorColor;
+    },
+
+    setCursorColor: function(color) {
+        this.params.cursorColor = color;
+        this.drawer.updateCursor();
+    },
+
+    getHeight: function() {
+        return this.params.height;
+    },
+
+    setHeight: function(height) {
+        this.params.height = height;
+        this.drawer.setHeight(height);
+    },
+
     drawBuffer: function () {
         var nominalWidth = Math.round(
             this.getDuration() * this.params.minPxPerSec * this.params.pixelRatio
