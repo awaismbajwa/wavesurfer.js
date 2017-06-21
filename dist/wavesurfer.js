@@ -101,11 +101,6 @@ var WaveSurfer = {
         this.drawer = Object.create(WaveSurfer.Drawer[this.params.renderer]);
         this.drawer.init(this.container, this.params);
 
-        this.drawer.on('redraw', function () {
-            my.drawBuffer();
-            my.drawer.progress(my.backend.getPlayedPercents());
-        });
-
         // Click-to-seek
         this.drawer.on('click', function (e, progress) {
             setTimeout(function () {
@@ -407,13 +402,17 @@ var WaveSurfer = {
 
         this.params.scrollParent = true;
 
-        this.drawBuffer();
-        this.drawer.progress(this.backend.getPlayedPercents());
+        this.refresh();
 
         this.drawer.recenter(
             this.getCurrentTime() / this.getDuration()
         );
         this.fireEvent('zoom', pxPerSec);
+    },
+
+    refresh: function() {
+        this.drawBuffer();
+        this.drawer.progress(this.backend.getPlayedPercents());
     },
 
     /**
