@@ -34,6 +34,7 @@ var WaveSurfer = {
         pixelRatio    : window.devicePixelRatio || screen.deviceXDPI / screen.logicalXDPI,
         progressColor : '#555',
         normalize     : false,
+        removeMediaElementOnDestroy: true,
         renderer      : 'MultiCanvas',
         scrollParent  : false,
         skipLength    : 2,

@@ -227,7 +227,14 @@ WaveSurfer.util.extend(WaveSurfer.MediaElement, {
     destroy: function () {
         this.pause();
         this.unAll();
-        this.media && this.media.parentNode && this.media.parentNode.removeChild(this.media);
+
+        if (this.params.removeMediaElementOnDestroy &&
+            this.media &&
+            this.media.parentNode) {
+
+            this.media.parentNode.removeChild(this.media);
+        }
+
         this.media = null;
     }
 });
