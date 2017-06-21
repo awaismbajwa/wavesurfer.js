@@ -28,11 +28,11 @@ WaveSurfer.util.extend(WaveSurfer.Drawer.Canvas, {
                 display: 'none',
                 boxSizing: 'border-box',
                 borderRightStyle: 'solid',
-                borderRightWidth: this.params.cursorWidth + 'px',
-                borderRightColor: this.params.cursorColor,
                 pointerEvents: 'none'
             })
         );
+
+        this.updateCursor();
 
         if (this.params.waveColor != this.params.progressColor) {
             var progressCanvas = this.progressWave.appendChild(
@@ -40,6 +40,13 @@ WaveSurfer.util.extend(WaveSurfer.Drawer.Canvas, {
             );
             this.progressCc = progressCanvas.getContext('2d');
         }
+    },
+
+    updateCursor: function() {
+        this.style(this.progressWave, {
+            borderRightWidth: this.params.cursorWidth + 'px',
+            borderRightColor: this.params.cursorColor
+        });
     },
 
     updateSize: function () {

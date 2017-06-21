@@ -219,6 +219,8 @@ WaveSurfer.Drawer = {
 
     createElements: function () {},
 
+    updateCursor: function () {},
+
     updateSize: function () {},
 
     drawWave: function (peaks, max) {},

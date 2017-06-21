@@ -14,7 +14,8 @@ describe('wavesurfer', function () {
         return WaveSurfer.create({
             container: '#waveform',
             waveColor: 'violet',
-            progressColor: 'purple'
+            progressColor: 'purple',
+            cursorColor: 'white',
         });
     }
 
@@ -76,5 +77,53 @@ describe('wavesurfer', function () {
 
         wavesurfer.setMute(false);
         expect(wavesurfer.isMuted).toBeFalse();
+    });
+
+    it('should allow getting waveColor', function () {
+        var waveColor = wavesurfer.getWaveColor();
+        expect(waveColor).toEqual('violet');
+    });
+
+    it('should allow setting waveColor', function () {
+        wavesurfer.setWaveColor('red');
+        var waveColor = wavesurfer.getWaveColor();
+
+        expect(waveColor).toEqual('red');
+    });
+
+    it('should allow getting progressColor', function () {
+        var progressColor = wavesurfer.getProgressColor();
+        expect(progressColor).toEqual('purple');
+    });
+
+    it('should allow setting progressColor', function () {
+        wavesurfer.setProgressColor('green');
+        var progressColor = wavesurfer.getProgressColor();
+
+        expect(progressColor).toEqual('green');
+    });
+
+    it('should allow getting cursorColor', function () {
+        var cursorColor = wavesurfer.getCursorColor();
+        expect(cursorColor).toEqual('white');
+    });
+
+    it('should allow setting cursorColor', function () {
+        wavesurfer.setCursorColor('black');
+        var cursorColor = wavesurfer.getCursorColor();
+
+        expect(cursorColor).toEqual('black');
+    });
+
+    it('should allow getting height', function () {
+        var height = wavesurfer.getHeight();
+        expect(height).toEqual(128);
+    });
+
+    it('should allow setting height', function () {
+        wavesurfer.setHeight(150);
+        var height = wavesurfer.getHeight();
+
+        expect(height).toEqual(150);
     });
 });
