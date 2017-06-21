@@ -42,6 +42,7 @@ var WaveSurfer = {
         pixelRatio    : window.devicePixelRatio || screen.deviceXDPI / screen.logicalXDPI,
         progressColor : '#555',
         normalize     : false,
+        removeMediaElementOnDestroy: true,
         renderer      : 'MultiCanvas',
         scrollParent  : false,
         skipLength    : 2,
@@ -1586,7 +1587,14 @@ WaveSurfer.util.extend(WaveSurfer.MediaElement, {
     destroy: function () {
         this.pause();
         this.unAll();
-        this.media && this.media.parentNode && this.media.parentNode.removeChild(this.media);
+
+        if (this.params.removeMediaElementOnDestroy &&
+            this.media &&
+            this.media.parentNode) {
+
+            this.media.parentNode.removeChild(this.media);
+        }
+
         this.media = null;
     }
 });
