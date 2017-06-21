@@ -355,7 +355,7 @@ var WaveSurfer = {
 
     setHeight: function(height) {
         this.params.height = height;
-        this.drawer.setHeight(height);
+        this.drawer.setHeight(height * this.params.pixelRatio);
     },
 
     drawBuffer: function () {
