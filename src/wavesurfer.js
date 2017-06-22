@@ -20,6 +20,7 @@ var WaveSurfer = {
         cursorColor   : '#333',
         cursorWidth   : 1,
         dragSelection : true,
+        fallbackProgressHeight: 4,
         fillParent    : true,
         forceDecode   : false,
         height        : 128,
