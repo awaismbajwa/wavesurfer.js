@@ -28,6 +28,7 @@ var WaveSurfer = {
         cursorColor   : '#333',
         cursorWidth   : 1,
         dragSelection : true,
+        fallbackProgressHeight: 4,
         fillParent    : true,
         forceDecode   : false,
         height        : 128,
@@ -2298,7 +2299,8 @@ WaveSurfer.util.extend(WaveSurfer.Drawer.MultiCanvas, {
         this.drawLine(peaks, absmax, halfH, offsetY, start, end);
 
         // Always draw a median line
-        this.fillRect(0, halfH + offsetY - this.halfPixel, this.width, this.halfPixel);
+        var fallbackProgressHeight = peaks.length > 0 ? 0 : this.params.fallbackProgressHeight;
+        this.fillRect(0, halfH + offsetY - this.halfPixel, this.width, this.halfPixel, fallbackProgressHeight);
     }),
 
     drawLine: function (peaks, absmax, halfH, offsetY, start, end) {
@@ -2346,7 +2348,9 @@ WaveSurfer.util.extend(WaveSurfer.Drawer.MultiCanvas, {
         ctx.fill();
     },
 
-    fillRect: function (x, y, width, height) {
+    fillRect: function (x, y, width, height, progressHeight) {
+        progressHeight = progressHeight || 0;
+
         var startCanvas = Math.floor(x / this.maxCanvasWidth);
         var endCanvas = Math.min(Math.ceil((x + width) / this.maxCanvasWidth) + 1,
                                 this.canvases.length);
@@ -2371,9 +2375,9 @@ WaveSurfer.util.extend(WaveSurfer.Drawer.MultiCanvas, {
 
                 this.fillRectToContext(entry.progressCtx,
                         intersection.x1 - leftOffset,
-                        intersection.y1,
+                        intersection.y1 - progressHeight / 2,
                         intersection.x2 - intersection.x1,
-                        intersection.y2 - intersection.y1);
+                        intersection.y2 - intersection.y1 + progressHeight);
             }
         }
     },
